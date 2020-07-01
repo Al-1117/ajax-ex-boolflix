@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <!-- Responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Moment -->
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+    <!-- Handlebars -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js"></script>
+    <!-- My Style -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Title -->
+    <title>Boolflix</title>
+  </head>
+  <body>
+    <!-- Search messages -->
+    <div class="search">
+      <input type="text" value="" placeholder="Inserisci il titolo del film">
+      <span class="search_button"><i class="fa fa-arrow-right" aria-hidden="true"></i></span>
+    </div>
+    <div class="movies">
+      <ul class="movies_container">
+
+      </ul>
+
+    </div>
+
+    <!-- TEMPLATE -->
+    <script id="movies_template" type="text/x-handlebars-template">
+      <li class="single_movie">
+        <h2>{{titolo}}</h2>
+        <span>{{titoloOriginale}}</span>
+        <span>{{lingua}}</span>
+        <span>{{voto}}</span>
+      </li>
+    </script>
+
+
+
+
+    <!-- My Script -->
+    <script type="text/javascript" src="js/script.js"></script>
+
+  </body>
+</html>
