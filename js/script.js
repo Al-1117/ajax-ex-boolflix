@@ -35,11 +35,7 @@ $(document).ready(function(){
             // Inizializzo un ciclo FOR IN prendendo di mira la
             // risposta dell'API per poter scorrere e prendere
             // l'array dei film
-            for (key in response) {
-
-              arrayFilm = response[key];
-
-            }
+              arrayFilm = response.results;
             // Stampo a schermo tutti i film con la relativa funzione
             stampaFilm(arrayFilm);
           },
@@ -71,8 +67,8 @@ $(document).ready(function(){
       // inseriti nell'HTML
       var contesto = {
         titolo: singoloElementoFilm.title,
-        titoloOriginale: singoloElementoFilm.original_title,
-        lingua: singoloElementoFilm.original_language,
+        titoloOriginale: singoloElementoFilm.original_title + ' - ',
+        lingua: singoloElementoFilm.original_language + ' - ',
         voto: singoloElementoFilm.vote_average,
       };
 

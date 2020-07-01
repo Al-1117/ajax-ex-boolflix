@@ -2,3 +2,7 @@
 body{
   font-family: 'Lato', sans-serif;
 }
+
+.movies_container > h2{
+  display: inline-block;
+}
