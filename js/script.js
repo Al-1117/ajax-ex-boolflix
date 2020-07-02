@@ -37,13 +37,23 @@ $(document).ready(function(){
     // Prima di tutto, svuoto il container dei risultati qualora ve ne fossero
     svuotaElemento('.movies_container');
     // Faccio la chiamata AJAX
-    $.ajax(
+    var indirizzoFilm = 'https://api.themoviedb.org/3/search/movie';
+    var indirizzoSerietv = 'https://api.themoviedb.org/3/search/tv';
+    var chiaveApi = 'b5088f564129de7518e2ba70246dbe5f';
 
+    var arrayIndirizzi = [indirizzoFilm,indirizzoSerietv];
+    console.log(arrayIndirizzi);
+
+    for (var i = 0; i < arrayIndirizzi.length; i++) {
+      array[i]
+    }
+
+    $.ajax(
       {
-        url:'https://api.themoviedb.org/3/search/movie',
+        url: indirizzoFilm + indirizzoSerietv,
         method: 'GET',
         data:{
-          api_key:'b5088f564129de7518e2ba70246dbe5f',
+          api_key: chiaveApi,
           query: filmDaCercare,
           language:'it-IT'
         },
@@ -61,6 +71,7 @@ $(document).ready(function(){
           // risposta dell'API per poter scorrere e prendere
           // l'array dei film
           var arrayFilm = response.results;
+          console.log(arrayFilm);
 
           // SE la chiamata ha successo, ma il risultato della ricerca non produce risultati
           if (arrayFilm.length == 0) {
