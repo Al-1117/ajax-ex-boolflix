@@ -48,6 +48,7 @@ $(document).ready(function(){
 
     // Inizializzo un CICLO FOR per poter fare ricerca con una
     // sola chiamata ajax a più indirizzi
+
     for (var i = 0; i < arrayIndirizzi.length; i++) {
       var indirizzo = arrayIndirizzi[i];
       $.ajax(
@@ -68,7 +69,7 @@ $(document).ready(function(){
             // risposta dell'API per poter scorrere e prendere
             // l'array dei film
             var arrayFilm = response.results;
-            console.log(arrayFilm);
+            // console.log(arrayFilm);
             // SE la chiamata ha successo, ma il risultato della ricerca non produce risultati
             if (arrayFilm.length == 0) {
               messaggio = "La tua ricerca non ha prodotto alcun risultato. Controlla la parola inserita";
@@ -103,14 +104,19 @@ $(document).ready(function(){
     // dell'array inserito
     for (var i = 0; i < array.length; i++) {
 
-      var singoloElementoFilm = array[i];
+      var singoloElemento = array[i];
+      // // console.log(array);
+      // if (array.includes(singoloElemento['name'])) {
+      //   console.log (this);
+      // }
       // Inserisco gli elementi nel contesto che poi saranno
       // inseriti nell'HTML
+
       var contesto = {
-        titolo: singoloElementoFilm.title,
-        titoloOriginale: singoloElementoFilm.original_title + ' - ',
-        lingua: singoloElementoFilm.original_language + ' - ',
-        voto: singoloElementoFilm.vote_average,
+        titolo: singoloElemento.title,
+        titoloOriginale: singoloElemento.original_title + ' - ',
+        lingua: singoloElemento.original_language + ' - ',
+        voto: valutazioneStelle(singoloElemento.vote_average),
       };
 
       var html = template(contesto);
@@ -148,5 +154,46 @@ $(document).ready(function(){
 
 
   };
+
+  // ----Funzione per visualizzare le stelle come valutazione  ----
+  // argomento: inserire un numero, accettata anche stringa
+  // return: ritorna il valore del numero in un numero intero da 1 a 5
+
+    console.log(valutazioneStelle('4'));
+
+  function valutazioneStelle(num){
+    // Converto il numero per poter eseguire le varie operazioni matematiche
+    var valoreConvertitoNumero = (parseInt(num));
+    // Divido il numero per 2
+    var valore = valoreConvertitoNumero / 2;
+    // Arrotondo per eccesso il valore inserito
+    var valoreArrondato = Math.ceil(valore);
+
+    console.log(valoreArrondato);
+
+    var stelline = "";
+
+    for (var i = 1; i <= 5; i++) {
+
+      if (i <= valoreArrondato) {
+        stelline += '<i class="fa fa-star" aria-hidden="true">'  + '</i>';
+      } else {
+        stelline += '<iclass="fa fa-star-o" aria-hidden="true">' + '</i>';
+
+
+      }
+
+
+    }
+
+    $('.stelle').html(stelline);
+
+    return stelline;
+
+
+  }
+
+
+
 
 });
