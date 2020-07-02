@@ -69,7 +69,7 @@ $(document).ready(function(){
             // risposta dell'API per poter scorrere e prendere
             // l'array dei film
             var arrayFilm = response.results;
-            // console.log(arrayFilm);
+            console.log(arrayFilm);
             // SE la chiamata ha successo, ma il risultato della ricerca non produce risultati
             if (arrayFilm.length == 0) {
               messaggio = "La tua ricerca non ha prodotto alcun risultato. Controlla la parola inserita";
@@ -105,7 +105,7 @@ $(document).ready(function(){
     for (var i = 0; i < array.length; i++) {
 
       var singoloElemento = array[i];
-      // // console.log(array);
+      // console.log(array);
       // if (array.includes(singoloElemento['name'])) {
       //   console.log (this);
       // }
@@ -113,8 +113,8 @@ $(document).ready(function(){
       // inseriti nell'HTML
 
       var contesto = {
-        titolo: singoloElemento.title,
-        titoloOriginale: singoloElemento.original_title + ' - ',
+        titolo: singoloElemento.title || singoloElemento.name,
+        titoloOriginale: singoloElemento.original_title + ' - ' || singoloElemento.original_name + ' - ',
         lingua: singoloElemento.original_language + ' - ',
         voto: valutazioneStelle(singoloElemento.vote_average),
       };
@@ -159,7 +159,7 @@ $(document).ready(function(){
   // argomento: inserire un numero, accettata anche stringa
   // return: ritorna il valore del numero in un numero intero da 1 a 5
 
-    console.log(valutazioneStelle('4'));
+    // console.log(valutazioneStelle('4'));
 
   function valutazioneStelle(num){
     // Converto il numero per poter eseguire le varie operazioni matematiche
@@ -169,7 +169,7 @@ $(document).ready(function(){
     // Arrotondo per eccesso il valore inserito
     var valoreArrondato = Math.ceil(valore);
 
-    console.log(valoreArrondato);
+    // console.log(valoreArrondato);
 
     var stelline = "";
 
@@ -190,6 +190,8 @@ $(document).ready(function(){
 
 
   }
+
+
 
 
 
