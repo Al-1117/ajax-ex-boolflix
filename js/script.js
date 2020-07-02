@@ -34,7 +34,11 @@ $(document).ready(function(){
   // return: non ritorna niente, trova e  stampa il risultato a schermo
 
   function cercaFilm(filmDaCercare){
+    // Prima di tutto, svuoto il container dei risultati qualora ve ne fossero
+    svuotaElemento('.movies_container');
+    // Faccio la chiamata AJAX
     $.ajax(
+
       {
         url:'https://api.themoviedb.org/3/search/movie',
         method: 'GET',
@@ -44,20 +48,37 @@ $(document).ready(function(){
           language:'it-IT'
         },
 
+
+
         // Se la chiamata ha successo
         success: function(response){
+
+          // Creo la variabile messaggio per poter gestire
+          // la stampa degli eventuali errori
+          var messaggio;
+
           // Inizializzo un ciclo FOR IN prendendo di mira la
           // risposta dell'API per poter scorrere e prendere
           // l'array dei film
           var arrayFilm = response.results;
 
-          // Stampo a schermo tutti i film con la relativa funzione
+          // SE la chiamata ha successo, ma il risultato della ricerca non produce risultati
+          if (arrayFilm.length == 0) {
+            messaggio = "La tua ricerca non ha prodotto alcun risultato. Controlla la parola inserita";
+            visualizzaMessaggioErrore(messaggio);
+          }
+
+          // ALTRIMENTI Stampo a schermo tutti i film con la relativa funzione
           stampaFilm(arrayFilm);
 
         },
-        // IN CASO DI ERRORE, VISUALIZZO UN MESSAGGIO
+        // IN CASO DI ERRORE, VISUALIZZO UN MESSAGGIO in base al tipo di errore
         error: function(){
-          alert("Qualcosa è andato storto");
+
+          if (filmDaCercare.length == 0 ) {
+            messaggio = "Inserisci una parola da cercare";
+            visualizzaMessaggioErrore(messaggio);
+          }
         }
       }
     );
@@ -91,5 +112,34 @@ $(document).ready(function(){
 
     }
   }
+
+  // ------Funzione per svuotare un container-------
+  // argomento: inserire l'elemento in questione
+  // return: non ritorna niente, svuota l'elemento
+  function svuotaElemento(elemento){
+    $(elemento).html('');
+  }
+
+  // ----Funzione per visualizzare il messaggio in caso di errore ----
+
+  // argomento: inserire un array
+  // return: non ritorna niente, permette la stampa il risultato a schermo
+  function visualizzaMessaggioErrore(messaggio){
+    // inserisco le variabili di handlebars
+    var sorgente = $("#error_template").html();
+    var template = Handlebars.compile(sorgente);
+    // Inserisco gli elementi nel contesto che poi saranno
+    // inseriti nell'HTML
+    var contesto = {
+      errore: messaggio
+    };
+
+    var html = template(contesto);
+    // Appendo il tutto nello specifico container
+    $('.movies_container').append(html);
+
+
+
+  };
 
 });

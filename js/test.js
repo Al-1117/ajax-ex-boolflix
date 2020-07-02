@@ -46,6 +46,8 @@ $(document).ready(function(){
 
         // Se la chiamata ha successo
         success: function(response){
+
+          svuotaElemento('.movies_container');
           // Inizializzo un ciclo FOR IN prendendo di mira la
           // risposta dell'API per poter scorrere e prendere
           // l'array dei film
@@ -90,6 +92,13 @@ $(document).ready(function(){
       $('.movies_container').append(html);
 
     }
+  }
+
+  // Funzione per svuotare un container
+  // argomento: inserire l'elemento in questione
+  // return: non ritorna niente, svuota l'elemento
+  function svuotaElemento(elemento){
+    $(elemento).html('');
   }
 
 });
