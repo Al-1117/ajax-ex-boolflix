@@ -186,8 +186,6 @@ $(document).ready(function(){
 
     }
 
-    $('.stelle').html(stelline);
-
     return stelline;
 
 
