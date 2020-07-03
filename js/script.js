@@ -105,17 +105,11 @@ $(document).ready(function(){
     for (var i = 0; i < array.length; i++) {
 
       var singoloElemento = array[i];
-      // console.log(array);
-      // if (array.includes(singoloElemento['name'])) {
-      //   console.log (this);
-      // }
-      // Inserisco gli elementi nel contesto che poi saranno
-      // inseriti nell'HTML
 
       var contesto = {
         titolo: singoloElemento.title || singoloElemento.name,
         titoloOriginale: singoloElemento.original_title + ' - ' || singoloElemento.original_name + ' - ',
-        lingua: singoloElemento.original_language + ' - ',
+        lingua: daISOaBandiera(singoloElemento.original_language),
         voto: valutazioneStelle(singoloElemento.vote_average),
       };
 
@@ -190,6 +184,26 @@ $(document).ready(function(){
 
 
   }
+
+  // ----Funzione per visualizzare le stelle come valutazione  ----
+  // argomento: inserire un testo che rapprensenti la lingua
+  // return: ritorna la bandierina al posto del codice ISO della lingua
+
+  function daISOaBandiera (lingua){
+
+    var arrayLingue = ['it', 'en', 'fr', 'de', 'es'];
+    var bandiera;
+
+    if (arrayLingue.includes(lingua)) {
+      bandiera = '<img src= "img/' + lingua + '.png">';
+    } else {
+      bandiera = lingua;
+    }
+
+
+    return bandiera;
+  }
+
 
 
 
