@@ -1,8 +1,91 @@
 
+/* RESET  */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Oxygen', sans-serif;
+}
+/* END OF RESET  */
+
+
+/* GENERAL RULES */
+
 body{
-  font-family: 'Lato', sans-serif;
+  color: #b1b1b1;
+  background-color: black;
+}
+/* Links */
+a{
+  text-decoration: none;
+  color: inherit;
 }
 
+/* Texts style */
+.text_bold{
+  font-weight: 600;
+}
+
+.text_grey{
+  color: #b1b1b1;
+}
+
+/* Lists */
+ul li{
+  list-style: none;
+}
+
+ /* Main wrapper */
+ .main_wrapper{
+   margin: 10px 30px;
+ }
+
+/* LEFT SIDE */
+nav{
+  display: flex;
+  height: 100px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo{
+  text-transform: uppercase;
+  font-size: 30px;
+  font-family: 'Bebas Neue', cursive;
+  padding-right: 15px;
+  color: #e50914;
+  font-weight: unset;
+
+}
+.menu{
+  display: flex;
+}
+
+.menu_items li,
+.option_list li
+{
+  display: inline-block;
+  padding: 0 5px;
+  line-height: 40px;
+  font-weight: 700;
+
+
+}
+
+/* RIGHT-SIDE */
+.option_list li{
+  line-height: normal;
+  padding: 0 10px;
+  font-size: 1.4rem;
+  color: #ffff;
+
+
+
+
+}
+
+
+/* MAIN*/
 .movies_container > h2{
   display: inline-block;
 }

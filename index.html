@@ -5,7 +5,8 @@
     <!-- Responsive -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <!-- JQuery -->
@@ -21,38 +22,65 @@
   </head>
 
   <body>
-    <!-- Search messages -->
-    <div class="search">
-      <input type="text" value="" placeholder="Inserisci il titolo del film">
-      <span class="search_button"><i class="fa fa-arrow-right" aria-hidden="true"></i></span>
+    <div class="main_wrapper">
+      <!--- HEADER -------------->
+      <header>
+        <!-- LEFT SIDE -->
+        <nav>
+          <div class="menu menu_left">
+            <h1 class="logo">boolflix</h1>
+            <ul class="menu_items">
+              <li>Home</li>
+              <li>Serie TV</li>
+              <li>Film</li>
+              <li>Nuovi arrivi</li>
+              <li>La mia lista</li>
+            </ul>
+          </div>
+          <!-- RIGHT SIDE -->
+          <div class="menu menu_right">
+
+            <!-- Search messages -->
+            <div class="search">
+              <input type="text" value="" placeholder="Inserisci il titolo del film">
+              <span class="search_button"><i class="fa fa-arrow-right" aria-hidden="true"></i></span>
+            </div>
+            <ul class="option_list">
+              <li><i class="fas fa-gift"></i></li>
+              <li><i class="far fa-bell"></i></li>
+              <li><i class="fas fa-user"></i></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <!---FINE HEADER -------------->
+      <div class="movies">
+        <ul class="results_container">
+        </ul>
+      </div>
+
+      <!-- TEMPLATE STAMPA RISULTATI -->
+      <script id="results_template" type="text/x-handlebars-template">
+        <li>
+          <div class="single_movie">
+            <h2>{{titolo}}</h2>
+            <img src="https://image.tmdb.org/t/p/w185{{path}}" alt="">
+            <ul>
+              </li>Titolo originale: {{titoloOriginale}}</li>
+              </li>Lingua: {{{lingua}}}</li>
+              </li>Valutazione: {{{voto}}}</li>
+            </ul>
+          </div>
+        </li>
+      </script>
+      <!-- TEMPLATE MESSAGGIO DI ERRORE -->
+      <script id="error_template" type="text/x-handlebars-template">
+        <h2>{{errore}}</h2>
+      </script>
+      <!-- My Script -->
+      <script type="text/javascript" src="js/script.js"></script>
     </div>
-    <div class="movies">
-      <ul class="results_container">
 
-      </ul>
-
-    </div>
-
-    <!-- TEMPLATE STAMPA RISULTATI -->
-    <script id="results_template" type="text/x-handlebars-template">
-      <li class="single_movie">
-        <h2>{{titolo}}</h2>
-        <span> Titolo originale: {{titoloOriginale}}</span>
-        <span> Lingua: {{{lingua}}}</span>
-        <span> Valutazione: {{{voto}}}</span>
-        <img src="https://image.tmdb.org/t/p/w185{{path}}" alt="">
-      </li>
-    </script>
-    <!-- TEMPLATE MESSAGGIO DI ERRORE -->
-    <script id="error_template" type="text/x-handlebars-template">
-      <h2>{{errore}}</h2>
-    </script>
-
-
-
-
-    <!-- My Script -->
-    <script type="text/javascript" src="js/script.js"></script>
 
   </body>
 </html>
