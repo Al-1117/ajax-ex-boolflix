@@ -55,6 +55,7 @@ nav{
   padding-right: 15px;
   color: #e50914;
   font-weight: unset;
+  cursor: pointer;
 
 }
 .menu{
@@ -68,6 +69,7 @@ nav{
   padding: 0 5px;
   line-height: 40px;
   font-weight: 700;
+  cursor: pointer;
 
 
 }

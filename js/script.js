@@ -108,10 +108,11 @@ $(document).ready(function(){
 
       var contesto = {
         titolo: singoloElemento.title || singoloElemento.name,
-        titoloOriginale: singoloElemento.original_title + ' - ' || singoloElemento.original_name + ' - ',
+        titoloOriginale: singoloElemento.original_title || singoloElemento.original_name,
         lingua: daISOaBandiera(singoloElemento.original_language),
         voto: valutazioneStelle(singoloElemento.vote_average),
         path: singoloElemento.poster_path,
+        panoramica: singoloElemento.overview,
       };
 
       var html = template(contesto);
