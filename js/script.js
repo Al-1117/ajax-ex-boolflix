@@ -111,6 +111,7 @@ $(document).ready(function(){
         titoloOriginale: singoloElemento.original_title + ' - ' || singoloElemento.original_name + ' - ',
         lingua: daISOaBandiera(singoloElemento.original_language),
         voto: valutazioneStelle(singoloElemento.vote_average),
+        path: singoloElemento.poster_path,
       };
 
       var html = template(contesto);
