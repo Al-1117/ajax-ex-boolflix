@@ -12,18 +12,46 @@
 // Carico il file Script.JS solo dopo che tutto l'HTML è stato caricato
 $(document).ready(function(){
 
+  // Recupero il valore del testo cercato e lo inserisco in una variabile
+  // testoCercato = $('.search input').val();
+
   // Creo l'evento cliccando sull'incona della ricerca dopo aver inserito il testo da cercare
   $(document).on('click', '.search_button',
     function(){
-      // Recupero il valore del testo cercato e lo inserisco in una variabile
-      testoCercato = $('.search input').val();
+      // testoCercato = $('.search input').val();
 
       // Recupero i risultati della ricerca film con l'apposita funzione
-      cercaFilm(testoCercato)
+      cercaFilm();
 
 
     }
   );
+
+  $('.search input').keyup(
+    function(){
+      // testoCercato = $('.search input').val();
+      // Se il trasto premuto corrisponde all'invio trovandosi nell'input per
+      // cercare un film
+      if (event.wich == 13  || event.keyCode == 13) {
+        cercaFilm();
+      };
+    }
+  );
+
+
+  $(document).on('mouseenter', '.single_movie',
+  function(){
+  $(this).children('.movie_details').removeClass('hidden');
+  $(this).children('.movie_details').addClass('active');
+
+  });
+
+  $(document).on('mouseleave', '.single_movie',
+  function(){
+  $(this).children('.movie_details').removeClass('active');
+  $(this).children('.movie_details').addClass('hidden');
+
+  });
 
 
   /////////////////////////////////// FUNZIONI///////////////////////////
@@ -33,9 +61,12 @@ $(document).ready(function(){
   // argomento: inserire il testo della ricerca
   // return: non ritorna niente, trova e  stampa il risultato a schermo
 
-  function cercaFilm(filmDaCercare){
+  function cercaFilm(){
     // Prima di tutto, svuoto il container dei risultati qualora ve ne fossero
     svuotaElemento('.results_container');
+
+    var filmDaCercare = $('.search input').val();
+
     // FACCIO LA  AJAX
     // Inserisco i dati che potrebbero cambiare in variabili per miglior gestione
     var indirizzoFilm = 'https://api.themoviedb.org/3/search/movie';
@@ -111,8 +142,8 @@ $(document).ready(function(){
         titoloOriginale: singoloElemento.original_title || singoloElemento.original_name,
         lingua: daISOaBandiera(singoloElemento.original_language),
         voto: valutazioneStelle(singoloElemento.vote_average),
-        path: singoloElemento.poster_path,
-        panoramica: singoloElemento.overview,
+        percorso: singoloElemento.poster_path,
+        trama: singoloElemento.overview,
       };
 
       var html = template(contesto);

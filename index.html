@@ -54,34 +54,66 @@
         </nav>
       </header>
       <!---FINE HEADER -------------->
-      <div class="movies">
-        <ul class="results_container">
-        </ul>
-      </div>
-
-      <!-- TEMPLATE STAMPA RISULTATI -->
-      <script id="results_template" type="text/x-handlebars-template">
-        <li>
-          <div class="single_movie">
-            <h2>{{titolo}}</h2>
-            <img src="https://image.tmdb.org/t/p/w185{{path}}" alt="">
-            <ul>
-              </li>Titolo originale: {{titoloOriginale}}</li>
-              </li>Lingua: {{{lingua}}}</li>
-              </li>Valutazione: {{{voto}}}</li>
-              </li>Panoramica: {{panoramica}}</li>
+      <main>
+        <div class="movies">
+          <ul class="results_container">
+            <!-- <li class="single_movie">
+              <h2>Breaking Bad</h2>
+              <img src="https://image.tmdb.org/t/p/w342/8kBNl6W1g9YhsgtQtFsen6GwwIb.jpg" alt="">
+              <ul class="movie_details">
+                <li>
+                  <h4>Titolo originale:</h4>
+                  <span>Breaking Bad</span>
+                </li>
+                <li>
+                  <h4>Lingua:</h4>
+                  <span>Usa</span>
+                </li>
+                <li>
+                  <h4>Valutazione:</h4>
+                  <span>****<span></li>
+                <li>
+                  <h4>Panoramica:</h4>
+                  <p>A story that revolves around five aristocratic families, set during the reign of Alexander I, and centered on the love triangle between Natasha Rostova, Pierre Bezukhov, and Andrei Bolkonsky.</p>
+                </li>
+              </ul>
+            </li> -->
+          </ul>
+        </div>
+        <!-- TEMPLATE STAMPA RISULTATI -->
+        <script id="results_template" type="text/x-handlebars-template">
+          <li class="single_movie">
+            <h2 class="title">{{titolo}}</h2>
+            <img src="https://image.tmdb.org/t/p/w342{{percorso}}" alt="">
+            <ul class="movie_details">
+              <li>
+                <h4>Titolo originale :</h4>
+                <span>{{titoloOriginale}}</span>
+              </li>
+              <li>
+                <h4>Lingua :</h4>
+                <span>{{{lingua}}}</span>
+              </li>
+              <li>
+                <h4>Valutazione:</h4>
+                <span class="rate">{{{voto}}}<span></li>
+              <li>
+                <h4>Trama :</h4>
+                <p class="overview">{{trama}}</p>
+              </li>
             </ul>
-          </div>
-        </li>
-      </script>
-      <!-- TEMPLATE MESSAGGIO DI ERRORE -->
-      <script id="error_template" type="text/x-handlebars-template">
-        <h2>{{errore}}</h2>
-      </script>
-      <!-- My Script -->
-      <script type="text/javascript" src="js/script.js"></script>
-    </div>
-
-
+          </li>
+        </script>
+        <!-- TEMPLATE MESSAGGIO DI ERRORE -->
+        <script id="error_template" type="text/x-handlebars-template">
+          <h2>{{errore}}</h2>
+        </script>
+        <!-- My Script -->
+        <script type="text/javascript" src="js/script.js"></script>
+      </div>
+    </main>
+    <footer>
+      FOOTER
+    </footer>
   </body>
 </html>
