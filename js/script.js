@@ -12,16 +12,16 @@
 // Carico il file Script.JS solo dopo che tutto l'HTML è stato caricato
 $(document).ready(function(){
 
-  // Recupero il valore del testo cercato e lo inserisco in una variabile
-  // testoCercato = $('.search input').val();
 
   // Creo l'evento cliccando sull'incona della ricerca dopo aver inserito il testo da cercare
   $(document).on('click', '.search_button',
     function(){
-      // testoCercato = $('.search input').val();
+      // Recupero il valore del testo cercato e lo inserisco in una variabile
+      var valoreDaCercare = $('.search input').val();
 
-      // Recupero i risultati della ricerca film con l'apposita funzione
-      cercaFilm();
+      // Recupero i risultati della ricerca  con l'apposita funzione
+      cerca(valoreDaCercare, 'film');
+      cerca(valoreDaCercare, 'serie');
 
 
     }
@@ -29,23 +29,27 @@ $(document).ready(function(){
 
   $('.search input').keyup(
     function(){
-      // testoCercato = $('.search input').val();
       // Se il trasto premuto corrisponde all'invio trovandosi nell'input per
       // cercare un film
       if (event.wich == 13  || event.keyCode == 13) {
-        cercaFilm();
+        // Recupero il valore del testo cercato e lo inserisco in una variabile
+        var valoreDaCercare = $('.search input').val();
+
+        cerca(valoreDaCercare, 'film');
+        cerca(valoreDaCercare, 'serie');
       };
     }
   );
 
-
+  // Gestisco gli eventi dell'hover del mouse su ogni singolo risultato
+  // all'entrata del mouse
   $(document).on('mouseenter', '.single_movie',
   function(){
   $(this).children('.movie_details').removeClass('hidden');
   $(this).children('.movie_details').addClass('active');
 
   });
-
+  // all'uscita del mouse
   $(document).on('mouseleave', '.single_movie',
   function(){
   $(this).children('.movie_details').removeClass('active');
@@ -61,11 +65,10 @@ $(document).ready(function(){
   // argomento: inserire il testo della ricerca
   // return: non ritorna niente, trova e  stampa il risultato a schermo
 
-  function cercaFilm(){
+  function cerca(valoreDaCercare, tipo){
     // Prima di tutto, svuoto il container dei risultati qualora ve ne fossero
     svuotaElemento('.results_container');
 
-    var filmDaCercare = $('.search input').val();
 
     // FACCIO LA  AJAX
     // Inserisco i dati che potrebbero cambiare in variabili per miglior gestione
@@ -75,20 +78,30 @@ $(document).ready(function(){
 
     // Faccio un array in cui metto gli indirizzi
 
-    var arrayIndirizzi = [indirizzoFilm,indirizzoSerietv];
+    // var arrayIndirizziFilm = [indirizzoFilm];
+    // var arrayIndirizziSerietv = [indirizzoSerietv];
+
+
+    if (tipo === 'film') {
+      var indirizzo = indirizzoFilm;
+
+    } else {
+      var indirizzo = indirizzoSerietv;
+    }
 
     // Inizializzo un CICLO FOR per poter fare ricerca con una
     // sola chiamata ajax a più indirizzi
 
-    for (var i = 0; i < arrayIndirizzi.length; i++) {
-      var indirizzo = arrayIndirizzi[i];
+    for (var i = 0; i < indirizzo.length; i++) {
+
+
       $.ajax(
         {
           url: indirizzo,
           method: 'GET',
           data:{
             api_key: chiaveApi,
-            query: filmDaCercare,
+            query: valoreDaCercare,
             language:'it-IT'
           },
           // Se la chiamata ha successo
@@ -99,19 +112,19 @@ $(document).ready(function(){
             // Inizializzo un ciclo FOR IN prendendo di mira la
             // risposta dell'API per poter scorrere e prendere
             // l'array dei film
-            var arrayFilm = response.results;
-            console.log(arrayFilm);
+            var arrayRisultati = response.results;
+            console.log(arrayRisultati);
             // SE la chiamata ha successo, ma il risultato della ricerca non produce risultati
-            if (arrayFilm.length == 0) {
+            if (arrayRisultati.length == 0) {
               messaggio = "La tua ricerca non ha prodotto alcun risultato. Controlla la parola inserita";
               visualizzaMessaggioErrore(messaggio);
             }
             // ALTRIMENTI Stampo a schermo tutti i film con la relativa funzione
-            stampaFilm(arrayFilm);
+            stampaRisultati(arrayRisultati);
           },
           // IN CASO DI ERRORE, VISUALIZZO UN MESSAGGIO in base al tipo di errore
           error: function(){
-            if (filmDaCercare.length == 0 ) {
+            if (valoreDaCercare.length == 0 ) {
               messaggio = "Inserisci una parola da cercare";
               visualizzaMessaggioErrore(messaggio);
             }
@@ -127,7 +140,7 @@ $(document).ready(function(){
 
   // argomento: inserire un array
   // return: non ritorna niente, permette la stampa il risultato a schermo
-  function stampaFilm(array){
+  function stampaRisultati(array){
     // inserisco le variabili di handlebars
     var sorgente = $("#results_template").html();
     var template = Handlebars.compile(sorgente);
@@ -137,6 +150,7 @@ $(document).ready(function(){
 
       var singoloElemento = array[i];
 
+      // Creo il contesto in modo da stampare sia film che serie tv
       var contesto = {
         titolo: singoloElemento.title || singoloElemento.name,
         titoloOriginale: singoloElemento.original_title || singoloElemento.original_name,
@@ -196,8 +210,7 @@ $(document).ready(function(){
     // Arrotondo per eccesso il valore inserito
     var valoreArrondato = Math.ceil(valore);
 
-    // console.log(valoreArrondato);
-
+    // Creo una variabile che conterrà le stelline
     var stelline = "";
 
     for (var i = 1; i <= 5; i++) {
@@ -223,13 +236,15 @@ $(document).ready(function(){
   // return: ritorna la bandierina al posto del codice ISO della lingua
 
   function daISOaBandiera (lingua){
-
+    // Creo un array in cui inserisco alcune lingue predefinite
     var arrayLingue = ['it', 'en', 'fr', 'de', 'es'];
     var bandiera;
-
+    // Se quet'ultimo array include il risultato:
     if (arrayLingue.includes(lingua)) {
+      // inserisco la relativa immagine nell'html
       bandiera = '<img src= "img/' + lingua + '.png">';
     } else {
+      // altrimenti stampo il codice della lingua
       bandiera = lingua;
     }
 
