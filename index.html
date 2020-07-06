@@ -21,99 +21,145 @@
     <title>Boolflix</title>
   </head>
 
-  <body>
-    <div class="main_wrapper">
-      <!--- HEADER -------------->
-      <header>
-        <!-- LEFT SIDE -->
-        <nav>
-          <div class="menu menu_left">
-            <h1 class="logo">boolflix</h1>
-            <ul class="menu_items">
-              <li>Home</li>
-              <li>Serie TV</li>
-              <li>Film</li>
-              <li>Nuovi arrivi</li>
-              <li>La mia lista</li>
-            </ul>
-          </div>
-          <!-- RIGHT SIDE -->
-          <div class="menu menu_right">
-
-            <!-- Search messages -->
-            <div class="search">
-              <input type="text" value="" placeholder="Inserisci il titolo del film">
-              <span class="search_button"><i class="fa fa-arrow-right" aria-hidden="true"></i></span>
-            </div>
-            <ul class="option_list">
-              <li><i class="fas fa-gift"></i></li>
-              <li><i class="far fa-bell"></i></li>
-              <li><i class="fas fa-user"></i></li>
-            </ul>
-          </div>
-        </nav>
-      </header>
-      <!---FINE HEADER -------------->
-      <main>
-        <div class="movies">
-          <ul class="results_container">
-            <!-- <li class="single_movie">
-              <h2>Breaking Bad</h2>
-              <img src="https://image.tmdb.org/t/p/w342/8kBNl6W1g9YhsgtQtFsen6GwwIb.jpg" alt="">
-              <ul class="movie_details">
-                <li>
-                  <h4>Titolo originale:</h4>
-                  <span>Breaking Bad</span>
-                </li>
-                <li>
-                  <h4>Lingua:</h4>
-                  <span>Usa</span>
-                </li>
-                <li>
-                  <h4>Valutazione:</h4>
-                  <span>****<span></li>
-                <li>
-                  <h4>Panoramica:</h4>
-                  <p>A story that revolves around five aristocratic families, set during the reign of Alexander I, and centered on the love triangle between Natasha Rostova, Pierre Bezukhov, and Andrei Bolkonsky.</p>
-                </li>
-              </ul>
-            </li> -->
+  <body class="app_wrapper">
+    <!--- HEADER -------------->
+    <header>
+      <!-- LEFT SIDE -->
+      <nav>
+        <div class="menu menu_left">
+          <h1 class="logo">boolflix</h1>
+          <ul class="menu_items">
+            <li>Home</li>
+            <li>Serie TV</li>
+            <li>Film</li>
+            <li>Nuovi arrivi</li>
+            <li>La mia lista</li>
           </ul>
         </div>
-        <!-- TEMPLATE STAMPA RISULTATI -->
-        <script id="results_template" type="text/x-handlebars-template">
-          <li class="single_movie">
-            <h2 class="title">{{titolo}}</h2>
-            <img src="https://image.tmdb.org/t/p/w342{{percorso}}" alt="">
+        <!-- RIGHT SIDE -->
+        <div class="menu menu_right">
+
+          <!-- Search messages -->
+          <div class="search">
+            <input type="text" value="" placeholder="Inserisci il titolo del film">
+            <span class="search_button"><i class="fa fa-arrow-right" aria-hidden="true"></i></span>
+          </div>
+          <ul class="option_list">
+            <li><i class="fas fa-gift"></i></li>
+            <li><i class="far fa-bell"></i></li>
+            <li><i class="fas fa-user"></i></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <!---FINE HEADER -------------->
+
+    <!-- MAIN CONTENT -->
+    <main>
+      <div class="movies">
+        <!-- Search results -->
+        <ul class="results_container">
+          <!-- <li class="single_movie">
+            <h2>Breaking Bad</h2>
+            <img src="https://image.tmdb.org/t/p/w342/8kBNl6W1g9YhsgtQtFsen6GwwIb.jpg" alt="">
             <ul class="movie_details">
               <li>
-                <h4>Titolo originale :</h4>
-                <span>{{titoloOriginale}}</span>
+                <h4>Titolo originale:</h4>
+                <span>Breaking Bad</span>
               </li>
               <li>
-                <h4>Lingua :</h4>
-                <span>{{{lingua}}}</span>
+                <h4>Lingua:</h4>
+                <span>Usa</span>
               </li>
               <li>
                 <h4>Valutazione:</h4>
-                <span class="rate">{{{voto}}}<span></li>
+                <span>****<span></li>
               <li>
-                <h4>Trama :</h4>
-                <p class="overview">{{trama}}</p>
+                <h4>Panoramica:</h4>
+                <p>A story that revolves around five aristocratic families, set during the reign of Alexander I, and centered on the love triangle between Natasha Rostova, Pierre Bezukhov, and Andrei Bolkonsky.</p>
               </li>
             </ul>
-          </li>
-        </script>
-        <!-- TEMPLATE MESSAGGIO DI ERRORE -->
-        <script id="error_template" type="text/x-handlebars-template">
-          <h2>{{errore}}</h2>
-        </script>
-        <!-- My Script -->
-        <script type="text/javascript" src="js/script.js"></script>
+          </li> -->
+        </ul>
       </div>
     </main>
+    <!-- FINE MAIN CONTENT -->
+
+    <!-- INIZIO FOOTER -->
     <footer>
-      FOOTER
+      <!-- Social Icons -->
+      <ul class="icons">
+        <li><i class="fab fa-facebook-square"></i></li>
+        <li><i class="fab fa-instagram"></i></li>
+        <li><i class="fab fa-twitter"></i></li>
+        <li><i class="fab fa-youtube"></i></li>
+      </ul>
+      <!-- Footer links-->
+      <div class="col col_1">
+        <ul>
+          <li>Audio e sottotitoli</li>
+          <li>Media Center</li>
+          <li>Privacy</li>
+          <li>Contattaci</li>
+        </ul>
+        <span class="btn">Codice di servizio</span>
+
+      </div>
+      <div class="col col_2">
+        <ul>
+          <li>Audiodescrizione</li>
+          <li>Rapporti con gli investitori</li>
+          <li>Note legali</li>
+        </ul>
+
+      </div>
+      <div class="col col_3">
+        <ul>
+          <li>Centro assistenza</li>
+          <li>Opportunità di lavoro</li>
+          <li>Preferenze per i cookie</li>
+        </ul>
+
+      </div>
+      <div class="col col_4">
+        <ul>
+          <li>Carte regalo</li>
+          <li>Condizioni di utilizzo</li>
+          <li>Informazioni sull'azienda</li>
+        </ul>
+      </div>
     </footer>
+    <!-- FINE FOOTER -->
+    
+    <!-- TEMPLATE STAMPA RISULTATI -->
+    <script id="results_template" type="text/x-handlebars-template">
+      <li class="single_movie">
+        <h2 class="title">{{titolo}}</h2>
+        <img src="https://image.tmdb.org/t/p/w342{{percorso}}" alt="">
+        <ul class="movie_details">
+          <li>
+            <h4>Titolo originale :</h4>
+            <span>{{titoloOriginale}}</span>
+          </li>
+          <li>
+            <h4>Lingua :</h4>
+            <span>{{{lingua}}}</span>
+          </li>
+          <li>
+            <h4>Valutazione:</h4>
+            <span class="rate">{{{voto}}}<span></li>
+          <li>
+            <h4>Trama :</h4>
+            <p class="overview">{{trama}}</p>
+          </li>
+        </ul>
+      </li>
+    </script>
+    <!-- TEMPLATE MESSAGGIO DI ERRORE -->
+    <script id="error_template" type="text/x-handlebars-template">
+      <h2>{{errore}}</h2>
+    </script>
+    <!-- My Script -->
+    <script type="text/javascript" src="js/script.js"></script>
   </body>
 </html>
